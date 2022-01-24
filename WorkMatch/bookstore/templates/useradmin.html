@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+{{template "head"}}
+<body>
+{{template "nav"}}
+
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+    <br>
+        <h1 class="header center orange-text">AdminUser</h1>
+
+<div class="row center">
+            <a href="tasksadmin" id="action-button" class="btn-large waves-effect waves-light orange" >Tasks</a>
+                        <a href="matchesadmin" id="action-button" class="btn-large waves-effect waves-light orange" >Matches</a>
+                        <a href="useradmin" id="action-button" class="btn-large waves-effect waves-light orange" >User</a>
+</div>
+
+<form action="http://localhost:8080/useradmin"  method="POST">
+    <label for="username"><b>Enter User</b></label>
+    <input type="text" placeholder="Enter User" name="username" required>
+    <button type="submit" name="searchusername" value="true">Search</button>
+    <button type="submit" name="banusername" value="true" style="background-color:red;">Ban</button>
+</form>
+
+<div class="container">
+    <div class="section">
+        <div class="row">
+            {{range .}}
+                <div class="card-wrapper col s12 l6">
+                    <div class="card horizontal sticky-action">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>{{.Language}}</p>
+                                <div class="card-action">
+                                    <span>{{.Description}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{end}}
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<style>
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+</style>
+<html>
+{{template "head"}}
+<body>
+{{template "nav"}}
+
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br><br>
+        <h1 class="header center orange-text">TasksAdmin</h1>
+        <div class="row center">
+            <a href="tasksadmin" id="action-button" class="btn-large waves-effect waves-light orange" >Tasks</a>
+                        <a href="matchesadmin" id="action-button" class="btn-large waves-effect waves-light orange" >Matches</a>
+                        <a href="useradmin" id="action-button" class="btn-large waves-effect waves-light orange" >User</a>
+        </div>
+        <br><br>
+
+    </div>
+</div>
+<div class="container">
+    <div class="section">
+        <div class="row">
+            {{range .}}
+                <div class="card-wrapper col s12 l6">
+                    <div class="card horizontal sticky-action">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <form action="http://localhost:8080/tasksadmin" method="post">
+                                    <button type="submit" name="id" value="{{.ID}}" class="btn-link">Remove</button>
+                                </form>
+                                <p>{{.Language}}</p>
+                                <div class="card-action">
+                                    <span>{{.Description}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{end}}
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+<script type="text/javascript" src="static/js/materialize.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<style>
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+</style>
+<html>
+{{template "head"}}
+<body>
+{{template "nav"}}
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br><br>
+        <h1 class="header center orange-text">MatchesAdmin</h1>
+        <div class="row center">
+            <a href="tasksadmin" id="action-button" class="btn-large waves-effect waves-light orange" >Tasks</a>
+            <a href="matchesadmin" id="action-button" class="btn-large waves-effect waves-light orange" >Matches</a>
+            <a href="useradmin" id="action-button" class="btn-large waves-effect waves-light orange" >User</a>
+        </div>
+        <br><br>
+
+    </div>
+</div>
+<div class="container">
+    <div class="section">
+        <div class="row">
+            {{range .}}
+            <form action="http://localhost:8080/matchesadmin" method="post">
+            <input type="hidden" name="name1" value="{{.Username1}}" />
+            <input type="hidden" name="name2" value="{{.Username2}}" />
+            <input type="hidden" name="id1" value="{{.ID1}}" />
+            <input type="hidden" name="id2" value="{{.ID2}}" />
+            <button type="submit" name="completeid" value="true" class="btn-link">Complete</button>
+            <button type="submit" name="removeid" value="true" class="btn-link" style="background-color:red;">Remove</button>
+            </form>
+                <div class="card-wrapper col s12 l6">
+                    <div class="card horizontal sticky-action" style="height: 300px">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>Language-{{.Language1}}</p>
+                                <p>Username-{{.Username1}} </p>
+                                <p>Date-{{.Time1}}</p>
+                                <textarea style="height: 5rem;" readonly>{{.Description1}}</textarea>
+                                <a href="http://localhost:8080/files/{{.ID2}}.zip" download>Link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-wrapper col s12 l6">
+                                    <div class="card horizontal sticky-action" style="height: 300px">
+                                        <div class="card-stacked">
+                                            <div class="card-content">
+
+                                                <p>Language-{{.Language2}}</p>
+                                                <p>Username-{{.Username2}} </p>
+                                                <p>Date-{{.Time2}}</p>
+                                                <textarea style="height: 5rem;" readonly>{{.Description2}}</textarea>
+                                                <a href="http://localhost:8080/files/{{.ID1}}.zip" download>Link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                </div>
+            {{end}}
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="static/js/materialize.min.js">
+
+</script>
+</body>
+</html>
